@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#rolagem {
+  scrollbar-width: auto;
+  scrollbar-color: #ffffff #16a34a;
+}
+/* Chrome, Edge, and Safari */
+#rolagem::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 10px;
+}
+#rolagem::-webkit-scrollbar-track {
+  background: #fff;
+  border: 2px solid #16a34a;
+  border-radius: 10px;
+  margin: 10px 20px 10px 0;
+}
+#rolagem::-webkit-scrollbar-thumb {
+  background-color: #16a34a;
+  border-radius: 10px;
+}
