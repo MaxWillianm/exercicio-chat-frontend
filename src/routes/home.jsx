@@ -1,7 +1,7 @@
-
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
-const Cadastro = ({ onCadastroConcluido }) => {
+const Home = ({ onCadastroConcluido }) => {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [celular, setCelular] = useState("");
   const [email, setEmail] = useState("");
@@ -9,15 +9,21 @@ const Cadastro = ({ onCadastroConcluido }) => {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
+  const isCadastroCompleto = nomeCompleto && celular && email && confirmarEmail && senha && confirmarSenha;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onCadastroConcluido({
-      nomeCompleto,
-      celular,
-      email,
-      senha,
-    });
+    if (isCadastroCompleto) {
+      onCadastroConcluido({
+        nomeCompleto,
+        celular,
+        email,
+        senha,
+      });
+    } else {
+      alert("Por favor, preencha todos os campos antes de cadastrar.");
+    }
   };
 
   return (
@@ -84,15 +90,15 @@ const Cadastro = ({ onCadastroConcluido }) => {
             required
           />
         </div>
-        <button
-          type="submit"
-          className="bg-green-600 text-white rounded-full py-2 px-8 transition-all hover:bg-green-700"
-        >
-          Cadastrar
-        </button>
+        <Link
+  to={isCadastroCompleto ? '/chat' : '/'}
+  className={`bg-green-600 text-white rounded-full py-2 px-8 flex items-center justify-center transition-all hover:bg-green-700 ${isCadastroCompleto ? '' : 'pointer-events-none opacity-50'}`}
+>
+  Cadastrar
+</Link>
       </form>
     </div>
   );
 };
 
-export default Cadastro;
+export default Home;
